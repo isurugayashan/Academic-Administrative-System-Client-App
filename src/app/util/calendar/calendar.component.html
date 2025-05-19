@@ -1,0 +1,13 @@
+<div class="wrap">
+<div class="left">
+  <daypilot-navigator [config]="navigatorConfig" [(date)]="date" #navigator></daypilot-navigator>
+</div>
+<div class="content">
+  <div class="buttons">
+    <a href="#" (click)="navigatePrevious($event)">Previous</a>
+    <a href="#" (click)="navigateToday($event)">Today</a>
+    <a href="#" (click)="navigateNext($event)">Next</a>
+  </div>
+  <daypilot-calendar [config]="config" [events]="events" #calendar (viewChange)="viewChange()"></daypilot-calendar>
+</div>
+</div>

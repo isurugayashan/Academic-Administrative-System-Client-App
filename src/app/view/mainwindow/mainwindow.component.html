@@ -1,0 +1,370 @@
+
+<body>
+<mat-toolbar>
+  <mat-toolbar-row>
+
+    <span class="toolbar-left">
+    <button mat-icon-button (click)="opened=!opened" class="btn-nav" ><mat-icon>menu</mat-icon></button>
+      <img src="/assets/3.png" class="img-logo">
+      <h3 class="welcome">Welcome.. </h3>
+    </span>
+    <span class="time">
+      {{updateDateTime()}}
+    </span>
+    <span class="toolbar-right">
+      <div class="indicator">
+        <div class="circle"></div>
+      </div>
+
+      <mat-icon class="notification">notifications</mat-icon>
+      <div  #myDiv style = "position: absolute; width: 65px; height: 40px; left: 80.3%; top: 1px"
+           matRipple>
+</div>
+
+      <label class="lbl-user">{{authService.getUsername().toLocaleUpperCase()}}</label>
+      <img [src]="authService.getPhoto()" class="img-user"/>
+<!--      <button mat-icon-button (click)="logout()" class="btn-logout"><span><mat-icon matTooltip="My tooltip">delete</mat-icon></span> </button>-->
+        <button mat-mini-fab  class="btn-logout" (click)="logout()">
+                  <span style="margin-top: -30px; font-size: 35px" matTooltip="Logout">
+                   <mat-icon>exit_to_app</mat-icon>
+                  </span>
+      </button>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container >
+  <mat-sidenav [(opened)]="opened" mode="side"  >
+    <mat-selection-list [multiple]="false">
+      <mat-accordion>
+      <mat-expansion-panel disabled="disabled">
+        <mat-expansion-panel-header>
+          <mat-list-item routerLink="home" class="white-text"><mat-icon>home</mat-icon><span style="color: #FFFFFF; font-size: 14px">Home</span></mat-list-item>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-list-item><mat-icon>widgets</mat-icon><span style="color: #FFFFFF; font-size: 14px">Dashboard</span></mat-list-item>
+        </mat-expansion-panel-header>
+
+        <mat-list-option routerLink="dashboard"><span style="color: #FFFFFF; font-size: 12px">Dashboard</span></mat-list-option>
+      </mat-expansion-panel>
+
+      <ul class="ul">
+        <li>ACADEMIC</li>
+      </ul>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Admin')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>person</mat-icon><span style="color: #FFFFFF; font-size: 14px">Admin</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let menuItem of AdminmenuItems">
+            <mat-list-item *ngIf="menuItem.accessFlag" >
+<!--              <mat-list-option routerLinkActive="active-list-item"  [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ menuItem.name }}</span></mat-list-option>-->
+              <button mat-button class="menu-button" [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null">
+                <span routerLink="document" routerLinkActive="active-list-item" >{{ menuItem.name }}</span>
+              </button>
+            </mat-list-item>
+
+          </ng-container>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Subject')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>subject</mat-icon><span style="color: #FFFFFF; font-size: 14px">Subject</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let subItem of SubjectmenuItems">
+            <mat-list-item *ngIf="subItem.accessFlag" >
+              <mat-list-option  [routerLink]="subItem.accessFlag ? subItem.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ subItem.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('School')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>school</mat-icon><span style="color: #FFFFFF; font-size: 14px">School</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let sch of SchoolmenuItems">
+            <mat-list-item *ngIf="sch.accessFlag" >
+              <mat-list-option  [routerLink]="sch.accessFlag ? sch.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ sch.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+        <ul class="ul">
+          <li>ADMINISTRATIVE</li>
+        </ul>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Member')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>person_add</mat-icon><span style="color: #FFFFFF; font-size: 14px">Member</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let member of MemberRegmenuItems">
+            <mat-list-item *ngIf="member.accessFlag" >
+              <mat-list-option  [routerLink]="member.accessFlag ? member.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ member.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Event')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>announcement</mat-icon><span style="color: #FFFFFF; font-size: 14px">Event</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let event of EventmenuItems">
+            <mat-list-item *ngIf="event.accessFlag" >
+              <mat-list-option  [routerLink]="event.accessFlag ? event.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ event.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Sectional')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>people</mat-icon><span style="color: #FFFFFF; font-size: 14px">Section</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let section of SectionalmenuItems">
+            <mat-list-item *ngIf="section.accessFlag" >
+              <mat-list-option  [routerLink]="section.accessFlag ? section.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ section.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Divisional')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>place</mat-icon><span style="color: #FFFFFF; font-size: 14px">Division</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let div of DivisionalmenuItems">
+            <mat-list-item *ngIf="div.accessFlag" >
+              <mat-list-option  [routerLink]="div.accessFlag ? div.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ div.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Zonal')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>work</mat-icon><span style="color: #FFFFFF; font-size: 14px">Zonal</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let zonal of ZonalmenuItems">
+            <mat-list-item *ngIf="zonal.accessFlag" >
+              <mat-list-option  [routerLink]="zonal.accessFlag ? zonal.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ zonal.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+        <ul class="ul">
+          <li>GENERAL</li>
+        </ul>
+
+        <mat-expansion-panel *ngIf="isMenuVisible('Evaluation')">
+          <mat-expansion-panel-header>
+            <mat-list-item><mat-icon>event_note</mat-icon><span style="color: #FFFFFF;">Evaluation</span></mat-list-item>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let evalu of EvaluationmenuItems">
+            <mat-list-item *ngIf="evalu.accessFlag" >
+              <mat-list-option  [routerLink]="evalu.accessFlag ? evalu.routerLink : null"><span style="color: #FFFFFF; font-size: 12px;font-weight: inherit; padding-left: -12px">{{ evalu.name }}</span></mat-list-option>
+            </mat-list-item>
+          </ng-container>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+    </mat-selection-list>
+
+
+
+
+
+
+
+<!--      <mat-accordion>-->
+<!--        &lt;!&ndash;      Subject&ndash;&gt;-->
+<!--&lt;!&ndash;        <mat-expansion-panel *ngIf="isMenuVisible('Admin')">&ndash;&gt;-->
+<!--&lt;!&ndash;          <mat-expansion-panel-header>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-list-item><a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <mat-icon>subject</mat-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;              Admin</a></mat-list-item>&ndash;&gt;-->
+<!--&lt;!&ndash;          </mat-expansion-panel-header>&ndash;&gt;-->
+<!--&lt;!&ndash;          <ng-container *ngFor="let admin of AdminmenuItems">&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-list-item routerLinkActive="active-list-item">&ndash;&gt;-->
+<!--&lt;!&ndash;              <mat-list-item *ngIf="admin.accessFlag">&ndash;&gt;-->
+<!--&lt;!&ndash;                <mat-list-option [routerLink]="admin.accessFlag ? admin.routerLink : null">{{ admin.name }}</mat-list-option>&ndash;&gt;-->
+<!--&lt;!&ndash;              </mat-list-item>&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-list-item>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;        </mat-expansion-panel>&ndash;&gt;-->
+
+<!--        <mat-expansion-panel *ngIf="isMenuVisible('Admin')">-->
+<!--          <mat-expansion-panel-header>-->
+<!--            <mat-list-item><mat-icon>person</mat-icon>Admin</mat-list-item>-->
+<!--          </mat-expansion-panel-header>-->
+<!--          <ng-container *ngFor="let menuItem of AdminmenuItems">-->
+<!--            <mat-list-item *ngIf="menuItem.accessFlag">-->
+<!--              <mat-list-option [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null">{{ menuItem.name }}</mat-list-option>-->
+<!--            </mat-list-item>-->
+<!--          </ng-container>-->
+<!--        </mat-expansion-panel>-->
+
+
+
+<!--        &lt;!&ndash;      School&ndash;&gt;-->
+<!--        <mat-expansion-panel *ngIf="isMenuVisible('School')">-->
+<!--          <mat-expansion-panel-header>-->
+<!--            <mat-list-item><a>-->
+<!--              <mat-icon>school</mat-icon>-->
+<!--              School</a></mat-list-item>-->
+<!--          </mat-expansion-panel-header>-->
+<!--          <ng-container *ngFor="let school of SchoolmenuItems">-->
+<!--            <mat-list-item routerLinkActive="active-list-item">-->
+<!--              <mat-list-item *ngIf="school.accessFlag">-->
+<!--                <mat-list-option [routerLink]="school.accessFlag ? school.routerLink : null">{{ school.name }}</mat-list-option>-->
+<!--              </mat-list-item>-->
+<!--            </mat-list-item>-->
+<!--          </ng-container>-->
+<!--        </mat-expansion-panel>-->
+
+
+
+<!--        <mat-expansion-panel  *ngIf="isMenuVisible('Member')">-->
+<!--          <mat-expansion-panel-header>-->
+<!--            <mat-list-item><a>-->
+<!--              <mat-icon>person_add</mat-icon>-->
+<!--              Member-Reg</a>-->
+<!--            </mat-list-item>-->
+<!--          </mat-expansion-panel-header>-->
+<!--          <ng-container *ngFor="let member of MemberRegmenuItems">-->
+<!--            <mat-list-item routerLinkActive="active-list-item">-->
+<!--              <mat-list-item *ngIf="member.accessFlag">-->
+<!--                <mat-list-option [routerLink]="member.accessFlag ? member.routerLink : null">{{ member.name }}</mat-list-option>-->
+<!--              </mat-list-item>-->
+<!--            </mat-list-item>-->
+<!--          </ng-container>-->
+<!--        </mat-expansion-panel>-->
+
+
+<!--        &lt;!&ndash;      Event&ndash;&gt;-->
+<!--        <mat-expansion-panel  *ngIf="isMenuVisible('Events')">-->
+<!--          <mat-expansion-panel-header>-->
+<!--            <mat-list-item><a>-->
+<!--              <mat-icon>announcement</mat-icon>-->
+<!--              Events</a></mat-list-item>-->
+<!--          </mat-expansion-panel-header>-->
+<!--          <ng-container *ngFor="let event of EventmenuItems">-->
+<!--            <mat-list-item routerLinkActive="active-list-item">-->
+<!--              <mat-list-item *ngIf="event.accessFlag">-->
+<!--                <mat-list-option [routerLink]="event.accessFlag ? event.routerLink : null">{{ event.name }}</mat-list-option>-->
+<!--              </mat-list-item>-->
+<!--            </mat-list-item>-->
+<!--          </ng-container>-->
+<!--        </mat-expansion-panel>-->
+
+<!--      &lt;!&ndash;      Section&ndash;&gt;-->
+<!--      <mat-expansion-panel  *ngIf="isMenuVisible('Sectional')">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-list-item><a>-->
+<!--            <mat-icon>people</mat-icon>-->
+<!--            Sectional</a></mat-list-item>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <ng-container *ngFor="let section of SectionalmenuItems">-->
+<!--          <mat-list-item routerLinkActive="active-list-item">-->
+<!--            <mat-list-item *ngIf="section.accessFlag">-->
+<!--              <mat-list-option [routerLink]="section.accessFlag ? section.routerLink : null">{{ section.name }}</mat-list-option>-->
+<!--            </mat-list-item>-->
+<!--          </mat-list-item>-->
+<!--        </ng-container>-->
+<!--      </mat-expansion-panel>-->
+
+
+<!--      &lt;!&ndash;    Divisional&ndash;&gt;-->
+<!--      <mat-expansion-panel  *ngIf="isMenuVisible('Divisional')">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-list-item><a>-->
+<!--            <mat-icon>place</mat-icon>-->
+<!--            Divisional</a></mat-list-item>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <ng-container *ngFor="let division of DivisionalmenuItems">-->
+<!--          <mat-list-item routerLinkActive="active-list-item">-->
+<!--            <mat-list-item *ngIf="division.accessFlag">-->
+<!--              <mat-list-option [routerLink]="division.accessFlag ? division.routerLink : null">{{ division.name }}</mat-list-option>-->
+<!--            </mat-list-item>-->
+<!--          </mat-list-item>-->
+<!--        </ng-container>-->
+
+<!--      </mat-expansion-panel>-->
+
+<!--      &lt;!&ndash;    Reports&ndash;&gt;-->
+<!--      <mat-expansion-panel  *ngIf="isMenuVisible('Zonal')">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-list-item><a>-->
+<!--            <mat-icon>work</mat-icon>-->
+<!--            Zonal</a></mat-list-item>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <ng-container *ngFor="let zonal of ZonalmenuItems">-->
+<!--          <mat-list-item routerLinkActive="active-list-item">-->
+<!--          <mat-list-item *ngIf="zonal.accessFlag">-->
+<!--            <mat-list-option [routerLink]="zonal.accessFlag ? zonal.routerLink : null">{{ zonal.name }}</mat-list-option>-->
+<!--          </mat-list-item>-->
+<!--          </mat-list-item>-->
+<!--        </ng-container>-->
+<!--      </mat-expansion-panel>-->
+
+
+<!--      <ul class="ul">-->
+<!--        <li>PREFERENCES</li>-->
+<!--      </ul>-->
+
+<!--      &lt;!&ndash;    Permission&ndash;&gt;-->
+<!--      <mat-expansion-panel *ngIf="isMenuVisible('Evaluation')">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-list-item><a>-->
+<!--            <mat-icon>person</mat-icon>-->
+<!--            Admin</a>-->
+<!--          </mat-list-item>-->
+<!--        </mat-expansion-panel-header>-->
+<!--          <ng-container *ngFor="let menuItem of AdminmenuItems">-->
+<!--            <mat-list-item routerLinkActive="active-list-item">-->
+<!--            <mat-list-item *ngIf="menuItem.accessFlag">-->
+<!--              <mat-list-option [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null">{{ menuItem.name }}</mat-list-option>-->
+<!--            </mat-list-item>-->
+<!--            </mat-list-item>-->
+<!--          </ng-container>-->
+<!--        </mat-expansion-panel>-->
+
+
+
+<!--        &lt;!&ndash;      Evaluation&ndash;&gt;-->
+<!--        <mat-expansion-panel *ngIf="isMenuVisible('Admin')" >-->
+<!--          <mat-expansion-panel-header>-->
+<!--            <mat-list-item><a>-->
+<!--              <mat-icon>event_note</mat-icon>-->
+<!--              Evaluation</a>-->
+<!--            </mat-list-item>-->
+<!--          </mat-expansion-panel-header>-->
+<!--          <ng-container *ngFor="let evaluation of EvaluationmenuItems">-->
+<!--            <mat-list-item routerLinkActive="active-list-item">-->
+<!--            <mat-list-item *ngIf="evaluation.accessFlag">-->
+<!--              <mat-list-option [routerLink]="evaluation.accessFlag ? evaluation.routerLink : null">{{ evaluation.name }}</mat-list-option>-->
+<!--            </mat-list-item>-->
+<!--            </mat-list-item>-->
+<!--          </ng-container>-->
+<!--        </mat-expansion-panel>-->
+
+<!--      </mat-accordion>-->
+<!--    </mat-nav-list>-->
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav">
+    <router-outlet></router-outlet>
+
+    <mat-card class="card1">
+      <mat-card-content>
+        <mat-slide-toggle (change)="onToggle($event)"  matTooltip="Theme"></mat-slide-toggle>
+      </mat-card-content>
+    </mat-card>
+    <footer style="margin-top: 10px">
+      <h6>Designed by codeCloud <mat-icon class="matIcon" style=" size: 100px;">copyright</mat-icon>2023.All Rights Reserved.</h6>
+    </footer>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+</body>

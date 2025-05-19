@@ -1,0 +1,144 @@
+
+<mat-grid-list [cols]="12" rowHeight="5rem" gutterSize="5px" responsive>
+
+
+  <mat-grid-tile [colspan]="9.3" [rowspan]="3">
+    <mat-card class="query-card">
+      <mat-card-content>
+          <div class="matcard-container">
+            <mat-card class="matcard">
+              <mat-card-content class="Update">
+                <h3>Total Schools of the Zonal</h3>
+                <h1>{{ countbyschool }}</h1>
+                <a (click)="schoolnavigate()">See more..</a>
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="matcard">
+              <mat-card-content  class="Update">
+                <h3>Total Divisions of the Zonal</h3>
+                <h1>{{countbydivision}}</h1>
+                <a (click)="divisionNavigate()" >See more..</a>
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="matcard">
+              <mat-card-content class="Update" >
+                <h3>Active Sections of the Zonal</h3>
+                <h1>{{countbysection}}</h1>
+                <a (click)="sectionNavigate()" >See more..</a>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="matcard">
+              <mat-card-content class="Update">
+                <h3>Total Teachers of the Zonal</h3>
+                <h1>{{countbyteacher}}</h1>
+                <a (click)="teacherNavigate()" >See more..</a>
+              </mat-card-content>
+            </mat-card>
+           </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile [colspan]="3" [rowspan]="4">
+    <mat-card class="mat-calender-card">
+      <mat-card-content>
+        <mat-calendar  [selected]="selectedDate" (selectedChange)="onSelect($event) "></mat-calendar>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="9" [rowspan]="5">
+    <mat-card class="mat-card">
+      <mat-card-content>
+        <div class="chart-container">
+          <div class="piechart" #columnchart></div>
+          <div class="barchart" #piechart></div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile [colspan]="3" [rowspan]="4">
+    <mat-card class="mat-card-google" >
+      <mat-card-content>
+        <google-map id="google-map" width="100%" height="325px" [center]="center">
+          <map-marker [position]="{lat: latitude, lng: longitude}" title="Marker Title"></map-marker>
+        </google-map>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile [colspan]="9" [rowspan]="4">
+    <mat-card class="bottom">
+      <mat-card-content class="notification">
+        <h2>Notices..</h2>
+        <p *ngFor="let notice of notices">
+          <mat-icon>insert_drive_file</mat-icon> {{notice.dopublished}}&nbsp;-&nbsp;{{notice.title}}
+        </p>
+        <a (click)="noticeNavigate()">All Notices</a><br>
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-chip-grid>
+          <mat-chip-set class="mat-mdc-chip-set">
+            <div *ngFor="let config of pieChartConfigs" #OverrallSessionPie></div>
+          </mat-chip-set>
+        </mat-chip-grid>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile [colspan]="3" [rowspan]="4.3">
+  <mat-card class="mat-small-bottom">
+    <mat-card-content class="user">
+      <h2> Latest users...</h2>
+      <ng-container *ngFor="let user of users" [ngModel]="user">
+        <p>
+          <mat-icon>verified_user</mat-icon> {{ user.username }} &nbsp;- {{ user.fullname }}
+        </p>
+      </ng-container>
+
+
+      <a (click)="noticeNavigate()">All Users</a><br>
+    </mat-card-content>
+  </mat-card>
+</mat-grid-tile>
+</mat-grid-list>
+
+
+
+<!--        <app-chart></app-chart>-->
+<!--            <mat-chip-grid>-->
+<!--              <mat-chip-set class="mat-mdc-chip-set">-->
+<!--                <div *ngFor="let config of pieChartConfigs" #OverrallSessionPie></div>-->
+<!--              </mat-chip-set>-->
+<!--&lt;!&ndash;            </mat-chip-grid>&#45;&#45;-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

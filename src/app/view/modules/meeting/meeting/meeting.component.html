@@ -1,0 +1,251 @@
+<mat-grid-list [cols]="12" rowHeight="4rem" gutterSize="5px" responsive>
+
+
+  <!--Program form-->
+  <mat-grid-tile [colspan]="6" [rowspan]="6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Meeting Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content  id="schform">
+        <mat-form [formGroup]="form">
+
+
+          <mat-form-field appearance="outline" style="width: 95%">
+            <mat-label>Topic</mat-label>
+            <input matInput formControlName="title">
+            <mat-hint>Ex:Academic Program</mat-hint>
+            <mat-error *ngIf="this.form.controls['title']?.invalid">{{this.regexes['title']['message']}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="designation">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let staffdesignation of staffdesignations"
+                          [value]="staffdesignation" (click)="loadstaff(staffdesignation.id)">{{staffdesignation.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+          <mat-label>Coordinator</mat-label>
+            <mat-select formControlName="staff">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let staff of staffs"
+                          [value]="staff">{{staff.fullname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Duration</mat-label>
+            <input matInput formControlName="duration">
+            <mat-error *ngIf="this.form.controls['duration'].invalid">{{this.regexes['duration']['message']}}</mat-error>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location">
+            <mat-error *ngIf="this.form.controls['location'].invalid">{{this.regexes['location']['message']}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width:95%" >
+            <mat-label>Text</mat-label>
+            <input matInput formControlName="text">
+            <mat-error *ngIf="this.form.controls['text'].invalid">{{this.regexes['text']['message']}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="datepicker1" formControlName="startdate">
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker1"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker1></mat-datepicker>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Created Date</mat-label>
+            <input matInput [matDatepicker]="datepicker2" formControlName="docreated">
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker2"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker2></mat-datepicker>
+          </mat-form-field>
+
+        </mat-form>
+      </mat-card-content>
+
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile [colspan]="6" [rowspan]="6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Meeting Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content id="academicForm">
+        <mat-form [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Modified Date</mat-label>
+            <input matInput [matDatepicker]="datepicker3" formControlName="domodified">
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker3"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker3></mat-datepicker>
+          </mat-form-field>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label> Meeting Category</mat-label>
+            <mat-select formControlName="procategory">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <!-- Display gradetype.name if available, otherwise schdesignation.name -->
+              <mat-option *ngFor="let procategory of procategories" [value]="procategory">
+                {{ (procategory.gradetype && procategory.gradetype.name) || (procategory.schdesignation && procategory.schdesignation.name) || 'N/A' }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Start time</mat-label>
+            <input type="time" matInput formControlName="starttime" id="starttimeInput">
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>End time</mat-label>
+            <input type="time" matInput formControlName="endtime" id="endtimeInput">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" >
+            <mat-label>Meeting Status</mat-label>
+            <mat-select formControlName="meetingstatus">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let prostatus of prostatuses"
+                          [value]="prostatus">{{prostatus.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Creator</mat-label>
+            <mat-select formControlName="staffCreator">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let staff of staffs"
+                          [value]="staff">{{staff.callingname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline"  style="width : 95%">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="2" formControlName="description"></textarea>
+            <mat-error *ngIf="this.form.controls['description'].invalid">{{this.regexes['description']['message']}}</mat-error>
+          </mat-form-field>
+          <p></p>
+          <div id="butpanel">
+            <button mat-raised-button (click)="add()" [disabled]="!enaadd">Add</button>
+            <button mat-raised-button (click)="clearForm()">Clear</button>
+            <button mat-raised-button [disabled]="!enaupd" (click)="update()" >Update</button>
+            <button mat-raised-button [disabled]="!enadel" (click)="delete()" >Delete</button>
+          </div>
+        </mat-form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <!--  Program Search-->
+<!--  <mat-grid-tile [colspan]="12" [rowspan]="4">-->
+<!--    <mat-card id="ssearch">-->
+<!--      <mat-card-header>-->
+<!--        <mat-card-title>School Search</mat-card-title>-->
+<!--      </mat-card-header>-->
+<!--      <mat-card-content>-->
+
+<!--        <mat-from [formGroup]="ssearch">-->
+
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Search by Date</mat-label>-->
+<!--            <input matInput [matDatepicker]="dos" formControlName="ssdate">-->
+<!--            <mat-datepicker-toggle matIconSuffix [for]="dos"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #dos></mat-datepicker>-->
+<!--          </mat-form-field>-->
+
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Search by Category</mat-label>-->
+<!--            <mat-select formControlName="sscategory">-->
+<!--              <mat-option [value]="null" selected>Not Selected</mat-option>-->
+<!--              <mat-option *ngFor="let procategory of procategories" [value]="procategory.id">{{procategory.name}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+
+
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Search By Status</mat-label>-->
+<!--            <mat-select formControlName="sstatus">-->
+<!--              <mat-option [value]="null" selected>Not Selected</mat-option>-->
+<!--              <mat-option *ngFor="let prostatus of prostatuses" [value]="prostatus.id">{{prostatus.name}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Search By Creator</mat-label>-->
+<!--            <mat-select formControlName="sscreator">-->
+<!--              <mat-option [value]="null" selected>Not Selected</mat-option>-->
+<!--              <mat-option *ngFor="let staffCreator of staffCreators" [value]="staffCreator.id">{{staffCreator.callingname}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+
+
+
+
+<!--          <div>-->
+<!--            <button mat-raised-button color="primary" (click)="btnSearchMc()" ><mat-icon>search</mat-icon>Search</button>-->
+<!--            <button mat-raised-button color="primary" (click)="btnSearchClearMc()"><mat-icon>reorder</mat-icon>Clear Search</button>-->
+<!--          </div>-->
+
+<!--        </mat-from>-->
+
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+<!--  </mat-grid-tile>-->
+
+  <!--    Program Table-->
+  <mat-grid-tile [colspan]="12" [rowspan]="6.5" responsive>
+    <mat-card class="table">
+      <mat-card-header>
+        <mat-card-title>Meeting Table</mat-card-title>
+        <div id="loading">
+          <img [src]="imageurl">
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="data">
+
+          <ng-container *ngFor="let column of columns;let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{headers[i]}} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{uiassist.getProperty(element,binders[i]) }} </mat-cell>
+          </ng-container>
+
+          <ng-container *ngFor="let cscolumn of cscolumns;let i = index;" [matColumnDef]="cscolumn">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-form [formGroup]="csearch" class="csearch">
+                <mat-form-field appearance="outline">
+                  <mat-label>{{csprompts[i]}}</mat-label>
+                  <input matInput [formControlName]="cscolumn"
+                         (keyup)="filterTable()">
+                </mat-form-field>
+              </mat-form>
+            </mat-header-cell>
+          </ng-container>
+
+
+          <mat-header-row id="th" *matHeaderRowDef="columns"></mat-header-row>
+          <mat-header-row *matHeaderRowDef="cscolumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns" (click)="fillForm(row)" [ngClass]="{'selected-row': row === selectedRow}"></mat-row>
+        </mat-table>
+        <mat-paginator [length]="20" [pageSize]="5" [pageSizeOptions]="[3,5,10,20]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+</mat-grid-list>
+
+
+

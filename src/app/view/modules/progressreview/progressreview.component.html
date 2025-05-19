@@ -1,0 +1,199 @@
+<mat-grid-list [cols]="12" rowHeight="4rem" gutterSize="5px" reponsive>
+
+
+  <!--Progress form-->
+  <mat-grid-tile [colspan]="6" [rowspan]="5.5">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Progress-Review Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content  id="staffForm">
+        <mat-form [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Subject Level</mat-label>
+            <mat-select  formControlName="sublevel">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let sublevel of sublevels"
+                          [value]="sublevel" (click)="loadSubject(sublevel.id)">{{sublevel.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Subject</mat-label>
+            <mat-select formControlName="subject">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let subject of subjects"
+                          [value]="subject" (click)="loadOptions(subject.id)">{{subject.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Director</mat-label>
+            <mat-select formControlName="directorsubject">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let directorsubject of directorsubjects"
+                          [value]="directorsubject" >{{directorsubject.staff.fullname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Teacher</mat-label>
+            <mat-select formControlName="teacher">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let progress of progressess"
+                          [value]="progress" (click)="loadSchool(progress.teacher.id)">{{progress.teacher.fullname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>School</mat-label>
+            <mat-select formControlName="progress">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let progress of progressess1"
+                          [value]="progress" >{{progress.schassign.school.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p></p>
+          <span id="imgpanel">
+            <img [src]="imgeTeachurl">
+             <input id="userImage" hidden="hidden"  Select type="file" formControlName="file"><br>
+             <button id="downloadbutton" (click)="print()">Print</button>
+          </span>
+
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Topic</mat-label>
+            <mat-select formControlName="topic">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let progress of progressess1"
+                          [value]="progress" >{{progress.topic}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Description</mat-label>
+            <mat-select formControlName="description">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let progress of progressess1"
+                          [value]="progress" >{{progress.description}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </mat-form>
+      </mat-card-content>
+
+    </mat-card>
+  </mat-grid-tile>
+
+  <!--  Progress Form-->
+  <mat-grid-tile [colspan]="6" [rowspan]="5.5" >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Progress-Review Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content id="academicForm">
+        <mat-form [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>To Date</mat-label>
+            <input matInput [matDatepicker]="docreated5" formControlName="dofrom">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated5"></mat-datepicker-toggle>
+            <mat-datepicker #docreated5></mat-datepicker>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label> From Date</mat-label>
+            <input matInput [matDatepicker]="docreated4" formControlName="tofrom">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated4"></mat-datepicker-toggle>
+            <mat-datepicker #docreated4></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Rating</mat-label>
+            <mat-select formControlName="reviewrating">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let reviewrating of reviewratings"
+                          [value]="reviewrating">{{reviewrating.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Date Of Created</mat-label>
+            <input matInput [matDatepicker]="docreated2" formControlName="docreated">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated2"></mat-datepicker-toggle>
+            <mat-datepicker #docreated2></mat-datepicker>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Date Of Modifed</mat-label>
+            <input matInput [matDatepicker]="docreated3" formControlName="domodified">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated3"></mat-datepicker-toggle>
+            <mat-datepicker #docreated3></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline"  style="width: 100%">
+            <mat-label>Comment</mat-label>
+            <textarea matInput rows="2" formControlName="comment"></textarea>
+          </mat-form-field>
+
+
+          <div id="butpanel">
+            <button mat-raised-button (click)="add()" [disabled]="!authService.getEnaAdd()">Add</button>
+            <button mat-raised-button (click)="clearForm()">Clear</button>
+            <button mat-raised-button (click)="update()" [disabled]="!authService.getEnaUpd()">Update</button>
+            <button mat-raised-button (click)="delete()" [disabled]="!authService.getEnaDel()">Delete</button>
+                      </div>
+        </mat-form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+
+
+
+
+
+
+  <mat-grid-tile [colspan]="12" [rowspan]="6.5" responsive>
+  <mat-card class="table">
+    <mat-card-header>
+      <mat-card-title>Progress-Review Table</mat-card-title>
+      <div id="loading">
+        <img [src]="imageurl">
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="table-container">
+        <mat-table [dataSource]="data">
+
+          <ng-container *ngFor="let column of columns;let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{headers[i]}} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{uiassist.getProperty(element,binders[i]) }} </mat-cell>
+          </ng-container>
+
+          <ng-container *ngFor="let cscolumn of cscolumns;let i = index;" [matColumnDef]="cscolumn">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-form [formGroup]="csearch" class="csearch">
+                <mat-form-field appearance="outline">
+                  <mat-label>{{csprompts[i]}}</mat-label>
+                  <input matInput [formControlName]="cscolumn"
+                         (keyup)="filterTable()">
+                </mat-form-field>
+              </mat-form>
+            </mat-header-cell>
+          </ng-container>
+
+
+          <mat-header-row id="th" *matHeaderRowDef="columns"></mat-header-row>
+          <mat-header-row *matHeaderRowDef="cscolumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns" (click)="fillForm(row)" [ngClass]="{'selected-row': row === selectedRow}"></mat-row>
+        </mat-table>
+      </div>
+      <mat-paginator [length]="20" [pageSize]="5" [pageSizeOptions]="[3,5,10,20]"></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</mat-grid-tile>
+
+</mat-grid-list>

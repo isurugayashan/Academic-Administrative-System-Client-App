@@ -1,0 +1,9 @@
+#divChart{
+  position: absolute;
+  display: block;
+  width: 670px;
+  height: 450px;
+  background-color: #f3f3f3;
+  margin-left: 30px;
+  margin-top: 20px;
+}

@@ -1,0 +1,15 @@
+mat-card {  width: 100%;  height:100%;  margin: 10px 10px -10px 10px ; }
+
+mat-card-content { overflow: auto; height: 100%; }
+
+mat-card-header { background: #7c83bb; }
+
+
+mat-card-content button{width: 88px;
+  margin-top: 20px;
+  position: relative;
+  background-color: #0f123d;}
+
+h2{
+  text-align: center;
+}

@@ -1,0 +1,215 @@
+<mat-grid-list [cols]="12" rowHeight="4rem" gutterSize="5px" reponsive>
+
+  <!--Progress form-->
+  <mat-grid-tile [colspan]="6" [rowspan]="5.5">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Teacher Progress Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content  id="staffForm">
+        <mat-form [formGroup]="form">
+
+          <mat-form-field appearance="outline" >
+            <mat-label>Teacher Grade-Type</mat-label>
+            <mat-select formControlName="gradetype">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let gradetype of gradetypes"
+                          [value]="gradetype" (click)="loadGrade(gradetype.id)">{{gradetype.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Teacher Grade</mat-label>
+            <mat-select formControlName="grade">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let grade of grades"
+                          [value]="grade" (click)="loadTeacher(grade.id)">{{grade.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Teacher Name</mat-label>
+            <mat-select formControlName="teacher">
+              <input (keyup)="onKey($event)" id="matselectinput">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let teacher of teachers" [value]="teacher" (click)="loadSchool(teacher.id)">{{teacher.fullname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Subject Level</mat-label>
+            <mat-select  formControlName="sublevel">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let schassign of schassigns"
+                          [value]="schassign" >{{schassign.subject.sublevel.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Subject</mat-label>
+            <mat-select formControlName="subject">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let schassign of schassigns"
+                          [value]="schassign">{{schassign.subject.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>School</mat-label>
+            <mat-select formControlName="schassign">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let schassign of schassigns"
+                          [value]="schassign">{{schassign.school.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Topic</mat-label>
+            <input matInput formControlName="topic">
+            <mat-error *ngIf="this.form.controls['topic']?.invalid">{{this.regexes['topic']['message']}}</mat-error>
+          </mat-form-field>
+          <p></p>
+          <span id="imgpanel">
+            <img [src]="imgeTeachurl">
+             <input id="userImage" hidden="hidden" (change)="selectImage($event)" Select type="file" formControlName="file"><br>
+            <label  for="userImage" id="selectbutton">Select</label>
+            <label id="clearbutton" (click)="clearImage()">Clear</label>
+             <button id="downloadbutton" [disabled]="!enprint" (click)="print()">Print</button>
+          </span>
+        </mat-form>
+      </mat-card-content>
+
+    </mat-card>
+  </mat-grid-tile>
+
+  <!--  Progress Form-->
+  <mat-grid-tile [colspan]="6" [rowspan]="5.5" >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Teacher Progress Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content id="academicForm">
+        <mat-form [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Date Of Created</mat-label>
+            <input matInput [matDatepicker]="docreated2" formControlName="docreated">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated2"></mat-datepicker-toggle>
+            <mat-datepicker #docreated2></mat-datepicker>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Date Of Modifed</mat-label>
+            <input matInput [matDatepicker]="docreated3" formControlName="domodified">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated3"></mat-datepicker-toggle>
+            <mat-datepicker #docreated3></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>From Date</mat-label>
+            <input matInput [matDatepicker]="docreated5" formControlName="dofrom">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated5"></mat-datepicker-toggle>
+            <mat-datepicker #docreated5></mat-datepicker>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>To Date</mat-label>
+            <input matInput [matDatepicker]="docreated4" formControlName="tofrom">
+            <mat-datepicker-toggle matIconSuffix [for]="docreated4"></mat-datepicker-toggle>
+            <mat-datepicker #docreated4></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline"  style="width: 100%">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="2" formControlName="description"></textarea>
+            <mat-error *ngIf="this.form.controls['description'].invalid">{{this.regexes['description']['message']}}</mat-error>
+          </mat-form-field>
+
+          <div id="butpanel">
+            <button mat-raised-button (click)="add()" [disabled]="!authService.getEnaAdd()">Add</button>
+            <button mat-raised-button (click)="clearForm()">Clear</button>
+            <button mat-raised-button (click)="update()" [disabled]="!authService.getEnaUpd()">Update</button>
+            <button mat-raised-button (click)="delete()" [disabled]="!authService.getEnaDel()">Delete</button>
+                      </div>
+        </mat-form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <!--  Search-->
+  <mat-grid-tile [colspan]="12" [rowspan]="3">
+    <mat-card  id="ssearch">
+      <mat-card-header>
+        <mat-card-title>Teacher Progress Search</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <mat-from [formGroup]="ssearch">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Subject level</mat-label>
+            <mat-select formControlName="sslevel">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let sublevel of sublevels" [value]="sublevel.id">{{sublevel.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Search by Subject </mat-label>
+            <input matInput formControlName="ssubject">
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="primary" (click)="btnSearchMc()" ><mat-icon>search</mat-icon>Search</button>
+            <button mat-raised-button color="primary" (click)="btnSearchClearMc()"><mat-icon>reorder</mat-icon>Clear Search</button>
+          </div>
+
+        </mat-from>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <!--  Table-->
+  <mat-grid-tile [colspan]="12" [rowspan]="6.5" responsive>
+    <mat-card class="table">
+      <mat-card-header>
+        <mat-card-title>Teacher Progress Table</mat-card-title>
+        <div id="loading">
+          <img [src]="imageurl">
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="table-container">
+        <mat-table [dataSource]="data">
+
+          <ng-container *ngFor="let column of columns;let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{headers[i]}} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{uiassist.getProperty(element,binders[i]) }} </mat-cell>
+          </ng-container>
+
+          <ng-container *ngFor="let cscolumn of cscolumns;let i = index;" [matColumnDef]="cscolumn">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-form [formGroup]="csearch" class="csearch">
+                <mat-form-field appearance="outline">
+                  <mat-label>{{csprompts[i]}}</mat-label>
+                  <input matInput [formControlName]="cscolumn"
+                         (keyup)="filterTable()">
+                </mat-form-field>
+              </mat-form>
+            </mat-header-cell>
+          </ng-container>
+
+
+          <mat-header-row id="th" *matHeaderRowDef="columns"></mat-header-row>
+          <mat-header-row *matHeaderRowDef="cscolumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns" (click)="fillForm(row)" [ngClass]="{'selected-row': row === selectedRow}"></mat-row>
+        </mat-table>
+        </div>
+        <mat-paginator [length]="20" [pageSize]="5" [pageSizeOptions]="[3,5,10,20]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+</mat-grid-list>
+

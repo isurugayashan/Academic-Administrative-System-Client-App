@@ -1,0 +1,53 @@
+<mat-grid-list [cols]="1" rowHeight="12rem">
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
+    <mat-card>
+      <mat-card-header><mat-card-title>Table View Of Items Summary Report</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="data">
+          <ng-container *ngFor="let column of columns; let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{ headers[i] }} </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element[binders[i]] }} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header><mat-card-title> Items Summary Report</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <button mat-raised-button color="primary" (click)="printChart()"> <span class="material-icons">print</span>Print</button>
+        <div #columnchart></div></mat-card-content>
+    </mat-card>
+
+  </mat-grid-tile>
+
+
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
+
+    <mat-card>
+      <mat-card-header><mat-card-title>Table View Of Section Wise Item Status Report</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="data2">
+          <ng-container *ngFor="let column of columns2; let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{ headers2[i] }} </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element[binders2[i]] }} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="columns2"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns2;"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header><mat-card-title>Section Wise Item Status Report</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <button mat-raised-button color="primary" (click)="printChartPie()"> <span class="material-icons">print</span>Print</button>
+        <div #columnchart2></div>
+
+      </mat-card-content>
+    </mat-card>
+
+  </mat-grid-tile>
+
+</mat-grid-list>

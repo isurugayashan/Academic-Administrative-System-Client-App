@@ -1,0 +1,120 @@
+<mat-grid-list [cols]="12" rowHeight="4rem">
+
+
+  <mat-grid-tile [colspan]="6" [rowspan]="5">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Division Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content  id="schform">
+              <mat-form [formGroup]="form">
+
+                <mat-form-field appearance="outline">
+                  <mat-label> Name</mat-label>
+                  <input matInput formControlName="name">
+                  <mat-error *ngIf="this.form.controls['name']?.invalid">{{this.regexes['name']['message']}}</mat-error>
+                </mat-form-field>
+                <span></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="outline" >
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email">
+                  <mat-error *ngIf="this.form.controls['email']?.invalid">{{this.regexes['email']['message']}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" >
+                  <mat-label>Mobile</mat-label>
+                  <input matInput formControlName="mobile">
+                  <mat-error *ngIf="this.form.controls['mobile'].invalid">{{this.regexes['mobile']['message']}}</mat-error>
+                </mat-form-field>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="outline" >
+                  <mat-label>Staff-Count</mat-label>
+                  <input matInput formControlName="staffcount">
+                  <mat-error *ngIf="this.form.controls['staffcount'].invalid">{{this.regexes['staffcount']['message']}}</mat-error>
+                </mat-form-field>
+                <p></p>
+
+                <span id="imgpanel">
+                    <img [src]="imgedivUrl">
+                    <input id="userImage" hidden="hidden" (change)="selectImage($event)" Select type="file" formControlName="photo">
+                    <label  for="userImage" id="selectbutton">Select</label>
+                    <label id="clearbutton" (click)="clearImage()">Clear</label>
+                  </span>
+                <br>
+
+         </mat-form>
+       </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="6" [rowspan]="5">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Division Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content  id="academicForm">
+        <mat-form [formGroup]="form">
+
+          <mat-form-field appearance="outline"  style="width: 89%">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address">
+            <mat-error *ngIf="this.form.controls['address'].invalid">{{this.regexes['address']['message']}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline"  style="width: 89%">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="2" formControlName="description"></textarea>
+            <mat-error *ngIf="this.form.controls['description'].invalid">{{this.regexes['description']['message']}}</mat-error>
+          </mat-form-field>
+
+          <div id="butpanel">
+            <button mat-raised-button (click)="add()" [disabled]="!enaadd">Add</button>
+            <button mat-raised-button (click)="clearForm()">Clear</button>
+            <button mat-raised-button (click)="update()" [disabled]="!enaupd">Update</button>
+            <button mat-raised-button (click)="delete(divObj)" [disabled]="!enadel">Delete</button>
+          </div>
+        </mat-form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="12" [rowspan]="6.5" responsive>
+    <mat-card class="table">
+      <mat-card-header>
+        <mat-card-title>Division Table</mat-card-title>
+        <div id="loading">
+          <img [src]="imageurl">
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="data">
+          <ng-container *ngFor="let column of columns;let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{headers[i]}} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{uiassist.getProperty(element,binders[i]) }} </mat-cell>
+          </ng-container>
+
+          <ng-container *ngFor="let cscolumn of cscolumns;let i = index;" [matColumnDef]="cscolumn">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-form [formGroup]="csearch" class="csearch">
+                <mat-form-field appearance="outline">
+                  <mat-label>{{csprompts[i]}}</mat-label>
+                  <input matInput [formControlName]="cscolumn"
+                         (keyup)="filterTable()">
+                </mat-form-field>
+              </mat-form>
+            </mat-header-cell>
+          </ng-container>
+
+
+          <mat-header-row id="th" *matHeaderRowDef="columns"></mat-header-row>
+          <mat-header-row *matHeaderRowDef="cscolumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns" (click)="fillForm(row)" [ngClass]="{'selected-row': row === selectedRow}"></mat-row>
+        </mat-table>
+        <mat-paginator [length]="20" [pageSize]="5" [pageSizeOptions]="[3,5,10,20]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+

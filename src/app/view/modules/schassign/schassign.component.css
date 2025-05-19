@@ -1,0 +1,234 @@
+/*General css*/
+mat-card {
+  width: 170%;
+  height: 100%;
+  margin: 10px 10px -16px 10px !important;
+}
+
+mat-card-header {
+  background: #7c83bb;
+}
+
+#loading img{
+  width: 30px;
+  height: 30px;
+  margin-left: 400px}
+
+/*Search field css*/
+#ssearch mat-card{overflow: auto}
+
+#ssearch mat-card-content {padding-top: 30px; background-color: white}
+
+#ssearch mat-form-field {padding-left: 25px; width: 320px; margin-right: 20px;
+}
+
+#ssearch button{width: 195px; margin-left: 18px; margin-top: 5px; background-color: #0f123d;}
+
+#ssearch mat-form-field .ng-dirty{
+  background-color: white;
+}
+
+/*Pesonal detail form css*/
+#staffForm {
+  padding-top: 20px;
+  max-width: 100% !important;
+  overflow: auto;
+  margin-left: 5px;
+
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+#staffForm mat-form-field{
+  width: 285px;
+  padding-bottom: 7px;
+
+}
+
+/* Photo Panel */
+#imgpanel {
+  height: 100px;
+  margin-bottom: 30px;
+  margin-right: 15px;
+  float: left;
+}
+#imgpanel p{
+  margin-top: 12px;
+  color: red;
+}
+#imgpanel img{
+  margin: 0;
+  height: 100px;
+  width: 100px;
+}
+#selectbutton, #clearbutton {
+  width: 70px;
+  display: block;
+  margin-bottom: 5px;
+  margin-left: 120px;
+  background-color: #1c2241;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+#downloadbutton{
+  width: 70px;
+  display: block;
+  margin-top: -40px;
+  margin-left: 210px;
+  background-color: #1c2241;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+#selectbutton{
+  margin-top: -90px;
+}
+/*Academic card css*/
+#academicForm mat-form-field{
+  width: 285px;
+  padding-bottom: 7px;
+
+}
+#academicForm {
+  padding-top: 20px;
+  max-width: 100% !important;
+  overflow: auto;
+  margin-left: 5px;
+}
+
+/* Academic Form > Button Panel */
+#butpanel{
+  margin-left: 200px;
+
+}
+#butpanel button{
+  margin-top: 10px;
+  width: 82px;
+  margin-left:3px;
+  background-color: #1c2241;
+  color: white;
+}
+
+/*Client Search*/
+.csearch{ height: 40px; width: 100%; margin-top: 5px;}
+
+.csearch mat-form-field .ng-dirty{
+  background-color: white;
+}
+
+/*This css are  position change of table columns */
+.mat-column-title {
+  margin-left: -5px;
+}
+.mat-column-callingname{
+  margin-left: -70px;
+}
+
+.mat-column-fullname {
+  margin-left: -30px;
+  margin-right: 10px;
+}
+
+.mat-column-dofirstappoint{
+  margin-left: -25px;
+}
+
+.mat-column-nic{
+  margin-left: -20px;
+}
+.mat-column-designation{
+  margin-left: -35px;
+}
+.mat-column-mobile{
+  margin-left: -25px;
+}
+
+.mat-column-office {
+  margin-left: -50px;
+}
+
+.mat-column-grade {
+  margin-left: -10px;
+}
+
+.mat-column-status {
+  margin-left: -45px;
+
+}
+.mat-column-gender {
+  margin-left: -45px;
+}
+
+.mat-column-email {
+  margin-left: -55px;
+
+}
+
+
+/*Row selected*/
+.selected-row{
+  background-color: #c9e6ff!important;
+}
+
+.mat-row:hover{
+  background-color: inherit !important;
+}
+
+mat-form-field .ng-dirty{
+  background-color: gold;
+}
+
+/*Button disabled*/
+button:disabled{
+  opacity: 0.5;
+}
+
+button.disabled{
+  opacity: 0.5;
+}
+
+
+.mat-grid-list-responsive {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.table{
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+.file-upload {
+  position: relative;
+  display: inline-block;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+input[type="file"] + .custom-file-upload:hover {
+  background-color: #45a049;
+}
+
+
+/*#academicForm mat-form-field{*/
+
+/*}*/
+
+/*#staffForm mat-form-field{*/
+
+
+/*}*/

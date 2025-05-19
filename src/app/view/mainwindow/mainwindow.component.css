@@ -1,0 +1,471 @@
+/* Tool Bar */
+
+
+mat-toolbar-row {
+  background-color: #1c2241;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  /*border: 1px solid  black;*/
+  /*border-left: 2px;*/
+  user-select: none; /* Standard syntax */
+}
+
+.toolbar-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.date-time{
+  color: white;
+}
+
+.toolbar-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+.img-logo {
+  height: 55px;
+  border-radius: 5px;
+  margin-left: 6px;
+  vertical-align: middle;
+  user-select: none; /* Standard syntax */
+}
+
+
+.welcome{
+  color: white;
+  font-family: "Monotype Corsiva", sans-serif;
+  font-weight: initial;
+  margin-left: 18px;
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+
+.btn-nav.mat-mdc-icon-button {
+  /*background-color: #2b3815;*/
+  margin-left: -4px;
+  color: #ffffff;
+  vertical-align: middle;
+  padding: 12px;
+  --mat-mdc-button-ripple-color: rgba(255, 255, 255, 0.2);
+}
+
+.lbl-user {
+  font-size: 14px;
+  color: white;
+  margin: 0px 5px 0px 0px;
+}
+
+.img-user {
+  height: 53px;
+  width: 55px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.btn-logout {
+  size: 15px;
+  color: white;
+  border-radius: 0px;
+  margin-left: 7px;
+  border: none;
+  background-color: #1c2241;
+}
+.btn-logout:hover{
+  color: black;
+}
+
+/* Notification*/
+.notification{
+  font-size:20px;
+  margin-right: 9px;
+  margin-top: 2px;
+  color: white;
+  outline: #7a7ff8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+
+}
+
+/* Indicator animation*/
+.indicator{
+  position: relative;
+  top: -14px;
+  left: 12px;
+  margin-bottom: -2px;
+}
+.circle{
+  background: #727cf5;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.circle {
+  background-color: #727cf5;
+  content: "";
+  display: table;
+  border-radius: 50%;
+  position: absolute;
+
+  box-shadow: 0 0 0 0 rgba(114, 124, 245,1);
+  transform: scale(1);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(114, 124, 245,1);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* Side Navigation */
+
+mat-sidenav-container {
+  height: 100%;
+  margin-top: -6px;
+  border-bottom: 1px  solid  black;
+  border-right: 1px solid black ;
+
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: 35px !important;
+}
+
+mat-expansion-panel-header{
+  height: 35px;
+  padding-left: 1px ;
+  margin-top: 5px !important;
+  font-weight: unset !important;
+  color: white;
+}
+
+mat-nav-list mat-expansion-panel-header{
+  height: 35px;
+  padding:0 20px 0 0;
+
+}
+
+mat-nav-list mat-expansion-panel-header:hover {
+  background-color: #39393b !important;
+  position: relative;
+  border-radius: 0px;
+  /*bottom: 1px;*/
+}
+
+mat-expansion-panel-header:hover {
+  background: #2c353b !important;
+}
+
+mat-expansion-panel-header:hover {
+  background: linear-gradient(to right, rgba(87, 129, 171, 0.8), rgba(167, 172, 212, 0.8)) !important;
+}
+
+/deep/ .mat-expansion-indicator::after, .mat-expansion-panel-header-description {
+  color: #ffffff;
+
+}
+
+mat-list-item ng-content{
+  color: white;
+}
+
+mat-list-option{
+  padding-left: -15px !important;
+  height: 35px !important;
+  font-size: 15px !important;
+
+}
+
+mat-list-item mat-list-option{
+  margin-left: -10px;
+}
+
+
+/*mat-list-option:hover{*/
+/*  background: #313a46 !important;*/
+/*}*/
+
+mat-list-item{
+  height: 35px !important;
+  font-size: 14px !important;
+
+}
+
+>>> mat-list-item:focus{
+  visibility: hidden !important;
+}
+
+mat-list-option::selection {
+  visibility: hidden !important;
+}
+
+.mat-mdc-list-option .mdc-radio__background {
+  display: none !important;
+}
+
+/*mat-list-option {*/
+/*  !*background-color: #7a7ff8;*!*/
+/*  padding-left: 25px !important;*/
+
+
+/*}*/
+
+mat-expansion-panel mat-list-option{
+  margin-left: -10px;
+  width: 225px !important;
+  height: 35px !important;
+  font-size: 15px !important;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  font-family: "Century Gothic";
+}
+
+.active-list-item {
+  color: #cb1212 !important; /* Note: You could also use a custom theme */
+  font-weight: bold;
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color: white;
+}
+
+.white-text {
+  color: white;
+}
+
+
+mat-list-option:hover {
+  background: linear-gradient(to right, rgba(87, 129, 171, 0.8), rgba(167, 172, 212, 0.8)) !important;
+}
+/*/deep/.mat-expansion-panel-body{*/
+/*  size: 2px;*/
+/*}*/
+
+mat-sidenav {
+  width: 16.8%;
+  background-color: #1c2241;
+  border-color: black;
+}
+
+mat-sidenav {
+  font-size: 14px;
+  text-decoration: none;
+  color: white ;
+  user-select: none; /* Standard syntax */
+  margin-right: 6px;
+}
+
+mat-sidenav mat-icon {
+  font-size: 17px;
+  margin: -2px 0px -8px 0px;
+  padding-left: 5px;
+  color: white;
+
+}
+/*.active-list-item {*/
+/*  background-color: #000000;*/
+/*  color: #FFFFFF;*/
+/*}*/
+
+mat-nav-list mat-list-item {
+  height: 35px;
+  font-size: 10px;
+  padding: 5px 5px 0px 4px;
+  color: white;
+
+}
+
+mat-nav-list mat-list-item:hover {
+  background-color: #39393b;
+  position: relative ;
+  /*bottom: 1px;*/
+
+  left: 1px;
+  right: 1px;
+}
+
+
+mat-expansion-panel{
+  border-radius: unset !important;
+  box-shadow: none !important;
+  background: #1c2241;
+}
+
+mat-nav-list mat-expansion-panel mat-list-item {
+  height: 28px;
+}
+.ul{
+  color: #ffffff;
+  font-size: 13px;
+  list-style-type: none;
+  margin-left: -30px;
+  margin-bottom: 0px;
+  margin-top: 3px;
+  font-weight: bold;
+  font-family: "Segoe UI", serif ;
+  cursor: default;
+  border-bottom: #364236 2px solid;
+  border-radius: 2px;
+  user-select: none; /* Standard syntax */
+}
+
+body{
+  overflow: hidden;
+
+}
+/deep/ ::-webkit-scrollbar {
+  width: 0.5em;
+  padding: 0;
+  margin: 0;
+
+}
+
+/deep/ ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+/deep/ ::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  opacity: 0.2;
+  border-radius: 10px;
+}
+
+/deep/ ::-webkit-scrollbar-thumb:hover {
+  background-color: gray;
+  opacity: 0.8%;
+
+}
+
+
+/*Active list item*/
+.active-list-item {
+  color: #7a7ff8 !important; /* Note: You could also use a custom theme */
+
+}
+
+/* Slide toggled dark light mode*/
+.sidenav{
+  background-color: #e0e5ee;
+
+}
+.dark{
+  background-color: #050705;
+  color: white;
+
+}
+
+.toolBar{
+  background-color: #e4edfa;
+  position: relative;
+  height: 50px;
+  border: none;
+  width: 100%;
+  margin-left: 70%;
+}
+
+.matIcon {
+  font-size:10px;
+  margin-top: 13px;
+  padding: 0;
+  margin-left: 1px;
+  margin-right: -12px;
+  vertical-align: middle;
+  font-weight: bold;
+  color: black;
+}
+
+footer{
+  background-color: #d3dff3;
+  position: relative;
+  display: flex;
+  padding-left: 40%;
+  font-weight: 600;
+  height: 60px;
+  color: black;
+}
+
+
+.card1{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    margin-left: 95%;
+    margin-top: 25%;
+    margin-right: 8px;
+    text-align: center;
+
+}
+
+
+
+/*slide toggled*/
+mat-slide-toggle{
+ margin-top: 5px;
+}
+
+
+/* Slide toggled color*/
+/deep/.mat-mdc-slide-toggle.mat-accent{
+  --mdc-switch-selected-focus-state-layer-color: #1c2241;
+   --mdc-switch-selected-handle-color: #1c2241;
+  --mdc-switch-selected-hover-state-layer-color: #1c2241;
+  --mdc-switch-selected-pressed-state-layer-color: #1c2241;
+  --mdc-switch-selected-focus-handle-color: #1c2241;
+  --mdc-switch-selected-hover-handle-color: #1c2241;
+  --mdc-switch-selected-pressed-handle-color: #1c2241;
+  --mdc-switch-selected-focus-track-color: #cccc;
+  --mdc-switch-selected-hover-track-color: #cccc;
+  --mdc-switch-selected-pressed-track-color: #cccc;
+  --mdc-switch-selected-track-color: #cccc;
+}
+
+/deep/.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb:after {
+  content: "\f00c";
+  font: normal normal normal 14px/1 FontAwesome;
+}
+
+/* Panel spacing*/
+.mat-expansion-panel-spacing{
+ margin: 0px 0;
+}
+
+mat.define-light-theme{
+  background-color: black;
+}
+.mat-drawer-container{
+  background-color: black;
+}
+.time{
+  color: white;
+}

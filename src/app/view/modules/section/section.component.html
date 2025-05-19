@@ -1,0 +1,156 @@
+<mat-grid-list [cols]="12" rowHeight="4rem">
+
+<!--Section Form-->
+  <mat-grid-tile [colspan]="6" [rowspan]="5">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Section Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content  id="schform">
+        <mat-form [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Section Name</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="this.form.controls['name']?.invalid">{{this.regexes['name']['message']}}</mat-error>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+          <mat-form-field appearance="outline" >
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="mobile">
+            <mat-error *ngIf="this.form.controls['mobile'].invalid">{{this.regexes['mobile']['message']}}</mat-error>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline">
+            <mat-label>Staff-Count</mat-label>
+            <input matInput formControlName="staffcount">
+            <mat-error *ngIf="this.form.controls['staffcount'].invalid">{{this.regexes['staffcount']['message']}}</mat-error>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline" >
+            <mat-label> Section Status</mat-label>
+            <mat-select formControlName="secstatus">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let secstatus of secstatus"
+                          [value]="secstatus">{{secstatus.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </mat-form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="6" [rowspan]="5">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Section Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content  id="academicForm">
+        <mat-form [formGroup]="form">
+          <mat-form-field appearance="outline" >
+            <mat-label>Create Date</mat-label>
+            <input matInput [matDatepicker]="crdate" formControlName="docreated">
+            <mat-datepicker-toggle matIconSuffix [for]="crdate"></mat-datepicker-toggle>
+            <mat-datepicker #crdate></mat-datepicker>
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline" >
+            <mat-label>Resign Date</mat-label>
+            <input matInput [matDatepicker]="rdate" formControlName="doresign">
+            <mat-datepicker-toggle matIconSuffix [for]="rdate"></mat-datepicker-toggle>
+            <mat-datepicker #rdate></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 95%">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="2" formControlName="description"></textarea>
+            <mat-error *ngIf="this.form.controls['description'].invalid">{{this.regexes['description']['message']}}</mat-error>
+          </mat-form-field>
+          <p></p>
+          <div id="butpanel">
+            <button mat-raised-button (click)="add()" [disabled]="!enaadd">Add</button>
+            <button mat-raised-button (click)="clearForm()">Clear</button>
+            <button mat-raised-button (click)="update()" [disabled]="!enaupd">Update</button>
+            <button mat-raised-button (click)="delete()" [disabled]="!enadel">Delete</button>
+          </div>
+        </mat-form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <!--  Staff Search-->
+  <mat-grid-tile [colspan]="12" [rowspan]="3">
+    <mat-card id="ssearch">
+      <mat-card-header>
+        <mat-card-title>Section Search</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <mat-from [formGroup]="ssearch">
+
+          <mat-form-field appearance="outline" style="color: white">
+            <mat-label>Search by Section Name</mat-label>
+            <input matInput formControlName="ssname">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="ssStatus">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let secstatus of secstatus" [value]="secstatus.id">{{secstatus.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="primary" (click)="btnSearchMc()" ><mat-icon>search</mat-icon>Search</button>
+            <button mat-raised-button color="primary" (click)="btnSearchClearMc()"><mat-icon>reorder</mat-icon>Clear Search</button>
+          </div>
+
+        </mat-from>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+<!--  Section Table-->
+  <mat-grid-tile [colspan]="12" [rowspan]="6.5" responsive>
+    <mat-card class="table">
+      <mat-card-header>
+        <mat-card-title>Section Table</mat-card-title>
+        <div id="loading">
+          <img [src]="imageurl">
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="data">
+
+          <ng-container *ngFor="let column of columns;let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{headers[i]}} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{uiassist.getProperty(element,binders[i]) }} </mat-cell>
+          </ng-container>
+
+<!--          <ng-container *ngFor="let cscolumn of cscolumns;let i = index;" [matColumnDef]="cscolumn">-->
+<!--            <mat-header-cell *matHeaderCellDef>-->
+<!--              <mat-form [formGroup]="csearch" class="csearch">-->
+<!--                <mat-form-field appearance="outline">-->
+<!--                  <mat-label>{{csprompts[i]}}</mat-label>-->
+<!--                  <input matInput [formControlName]="cscolumn"-->
+<!--                         (keyup)="filterTable()">-->
+<!--                </mat-form-field>-->
+<!--              </mat-form>-->
+<!--            </mat-header-cell>-->
+<!--          </ng-container>-->
+
+          <mat-header-row id="th" *matHeaderRowDef="columns"></mat-header-row>
+<!--          <mat-header-row *matHeaderRowDef="cscolumns"></mat-header-row>-->
+          <mat-row *matRowDef="let row; columns: columns" (click)="fillForm(row)" [ngClass]="{'selected-row': row === selectedRow}"></mat-row>
+        </mat-table>
+        <mat-paginator [length]="20" [pageSize]="5" [pageSizeOptions]="[3,5,10,20]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+

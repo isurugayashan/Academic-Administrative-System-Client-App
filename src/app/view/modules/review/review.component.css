@@ -1,0 +1,164 @@
+
+/*General css*/
+mat-card {
+  width: 170%;
+  height: 100%;
+  margin: 10px 10px -16px 10px !important;
+}
+
+mat-card-header {
+  background: #7c83bb;
+}
+
+#loading img{
+  width: 30px;
+  height: 30px;
+  margin-left: 400px}
+
+/*Search field css*/
+
+#ssearch mat-card-content {padding-top: 30px; background-color: white}
+
+#ssearch mat-form-field {padding-left: 25px; width: 320px; margin-right: 20px;
+}
+
+#ssearch button{width: 195px; margin-left: 18px; margin-top: 5px; background-color: #0f123d;}
+
+#ssearch mat-form-field .ng-dirty{
+  background-color: white;
+}
+
+/*Pesonal detail form css*/
+#schform {
+  padding-top: 20px;
+  width: 100% !important;
+  overflow: auto;
+  margin-left: 5px;
+
+}
+
+#schform mat-form-field{
+  width: 285px;
+  padding-bottom: 7px;
+  padding-top: 4px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Photo Panel */
+#imgpanel {
+  height: 100px;
+  margin-bottom: 50px;
+  margin-right: 55px;
+  float: right;
+}
+#imgpanel img{
+  margin-left: 40px;
+  height: 200px;
+  width: 190px;
+}
+#selectbutton, #clearbutton{
+  width: 140px;
+  display: block;
+  margin-left: 30px;
+  margin-bottom: 5px;
+  background-color: #1c2241;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+#selectbutton{
+  margin-top: 5px;
+  margin-left: 55px;
+}
+#clearbutton{
+  margin-left: 55px;
+}
+/*Academic card css*/
+#academicForm mat-form-field{
+  width: 285px;
+  padding-bottom: 8px;
+  padding-top: 4px;
+
+}
+#academicForm {
+  padding-top: 20px;
+  max-width: 100% !important;
+  overflow: scroll;
+  margin-right: -90px;
+}
+.table{
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+
+/* Academic Form > Button Panel */
+#butpanel{
+  margin-top: -20px;
+  margin-bottom: 40px;
+  margin-left: 220px;
+  padding-bottom: 40px;
+}
+#butpanel button{
+  float: left;
+  width: 82px;
+  margin-top: 10px;
+  margin-left:3px;
+  background-color: #1c2241;
+  color: white;
+}
+
+/*Client Search*/
+.csearch{ height: 40px; width: 100%; margin-top: 5px;}
+
+.csearch mat-form-field .ng-dirty{
+  background-color: white;
+}
+
+/*This css are  position change of table columns */
+
+
+/*mat-column.schstudent{*/
+/*  margin-left: 100px;*/
+/*}*/
+/*mat-header-row{*/
+/*  margin-left: -30px;*/
+/*}*/
+/*mat-row{*/
+/*  margin-left: -25px;*/
+/*}*/
+
+/*.mat-column-email{*/
+/*  margin-left: -7px;*/
+/*}*/
+/*.mat-column-name{*/
+/*  margin-left: -25px;*/
+/*}*/
+
+/*Row selected*/
+.selected-row{
+  background-color: #c9e6ff!important;
+}
+
+.mat-row:hover{
+  background-color: inherit !important;
+}
+
+mat-form-field .ng-dirty{
+  background-color: gold;
+}
+
+/*Button disabled*/
+button:disabled{
+  opacity: 0.5;
+}
+
+button.disabled{
+  opacity: 0.5;
+}
+
+

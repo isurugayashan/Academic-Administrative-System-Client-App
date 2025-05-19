@@ -1,0 +1,296 @@
+.mat-card {
+  width: 100%;
+  height: 100%;
+  margin-left: 8px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  position: relative;
+  vertical-align: bottom;
+  border-radius: 10px !important;
+
+
+}
+.mat-calender-card{
+  width: 100% !important;
+  height: 100%;
+  margin-left: 8px;
+  margin-right: 4px;
+  margin-top: 18px;
+  margin-bottom: 5px;
+  position: relative;
+  vertical-align: bottom;
+  border-bottom:  none;
+  padding: 0;
+  overflow: auto;
+}
+
+.mat-small-bottom{
+  width: 100% !important;
+  height: 100%;
+  margin-left: 8px;
+  margin-right: 4px;
+  margin-top: 20px;
+  position: relative;
+
+}
+
+.mat-card-google{
+  width: 100% !important;
+  height: 75%;
+  margin-left: 8px;
+  margin-right: 4px;
+  margin-top: -71px;
+  margin-bottom: -5px;
+  position: relative;
+  display: block;
+  border-radius: 5px;
+}
+
+mat-card-header {
+  background: #c0d9c3;
+}
+
+.new-card{
+  width: 100%;
+  height: 90% !important;
+  margin-left: 8px;
+  margin-right: 4px;
+  margin-top: -10px;
+  position: relative;
+}
+.query-card{
+  display: block;
+  width: 100%;
+  height: 90% !important;
+  margin-left: 8px;
+  margin-right: 4px;
+  margin-top: -8px;
+  position: relative;
+  overflow: hidden;
+}
+.bottom{
+  width: 100%;
+  height: 90% !important;
+  margin-left: 8px;
+  margin-right: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  vertical-align: bottom;
+  border-bottom:  none;
+}
+mat-calendar{
+  margin-top: -20px;
+  height: 110px;
+  position: center;
+  margin-left: 10px;
+  float: right;
+  width: 95%;
+  font-weight: 20;
+  overflow: inherit;
+
+}
+/deep/.mat-calendar-body-today{
+  background-color: #1c2241;
+  color: white;
+}
+/deep/.mat-calendar-table-header-divider::after{
+  background-color:#0f123d;
+  height: 2px;
+  size: 2px;
+  border: 1px solid;
+
+}
+/deep/.mat-calendar-table-header{
+  color: #1c2241;
+}
+
+.first{
+  height: 150px;
+  width: 200px;
+  table-layout: fixed;
+}
+
+/*Google map*/
+
+#google-map{
+  margin-left: -16px;
+  margin-top: -16px;
+  position: absolute;
+  padding-left: -20px;
+  width: 100%;
+}
+
+.piechart div {
+  margin-left: -30px;
+  margin-top: -20px;
+  float: left;
+}
+.barchart div{
+  float: right;
+  margin-right: -20px;
+}
+
+/*Mat-card small parts*/
+.Update{
+  text-align: center;
+  color: black;
+}
+mat-card-content h3{
+  text-align: left;
+  font-size: 18px;
+}
+
+mat-card-content h1{
+  text-align: right;
+  font-size: 44px;
+  margin-top: -12px;
+}
+
+mat-card-content a{
+  text-align: right;
+  margin-top: 5px;
+  color: blue;
+  cursor: pointer;
+  margin-left: 92px;
+}
+
+.mat-mdc-chip-set .mdc-evolution-chip-set__chips {
+  min-width: 100%;
+}
+.mat-mdc-chip-set{
+  margin-left: 320px;
+  width: 100px;
+  height: 46px;
+  margin-top: -140px;
+}
+/*Notifacation*/
+.notification{
+
+  border-color: #1c2241;
+  border-inline-color: #7a7ff8;
+  box-shadow: 0 0 5px #222264;
+  max-height: 100%;
+  max-width: 50%;
+  margin-left: 17px;
+  margin-top: 20px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.notification::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.notification::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.notification::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.user{
+  border-color: #1c2241;
+  max-height: 100%;
+  max-width: 100%;
+  /*margin-left: 6px;*/
+  /*margin-top: 6px;*/
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.user::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.user::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.user::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+
+
+mat-card-content p {
+  font-family: Overpass, sans-serif;
+  font-size: .940rem;
+  font-weight: 400;
+  line-height: 2;
+  color: black;
+
+}
+.notification a{
+  margin-left: 350px;
+}
+mat-card-content h2 {
+  color: black;
+}
+
+ mat-icon{
+   display: inline-flex;
+   /*//font: normal normal normal 24px/1 Material Design Icons;*/
+   font-size: inherit;
+   text-rendering: auto;
+   line-height: inherit;
+   -webkit-font-smoothing: antialiased;
+   color: black;
+}
+mat-card-content a{
+  /*margin-left: 350px;*/
+  margin-top: -10px;
+  color: #7a7ff8;
+  cursor: pointer;
+}
+
+mat-card-content a:hover {
+  color: #1c2241;
+  text-decoration: underline;
+  /* Add any other desired styles */
+}
+
+#ng-container{
+  display: block;
+}
+.matcard-container {
+  display: flex;       /* Display the mat-card elements in one row */
+  gap: 10px;          /* Add some spacing between mat-card elements */
+  justify-content: center;  /* Center the elements horizontally */
+}
+
+/* Optional: You can adjust the styles of each individual mat-card */
+.matcard {
+  box-shadow: 0 0 5px #222264;
+  flex: 1;            /* Let the mat-card elements grow equally to fill the available space */
+  max-width: 300px;   /* Set a maximum width for the mat-card elements */
+}
+
+
+/* Add flex container styles to the mat-card element */
+.mat-card {
+  display: flex;
+
+  flex-direction: row; /* Arrange the chart containers in a row */
+  justify-content: space-around; /* Spread the chart containers evenly */
+}
+
+/* Adjust the chart container to hold both charts */
+.chart-container {
+  padding-left: 69px;
+  gap: 70px;
+  display: flex;
+  flex-direction: row; /* Arrange the charts horizontally */
+  flex: 1; /* Allow the container to grow and fill the available space */
+}
+
+/* Optional: Adjust the individual chart containers */
+.piechart,
+.barchart {
+  flex: 1; /* Allow each chart container to grow equally and fill the available space */
+  max-width: 40%; /* Set a maximum width for each chart container */
+  padding: 8px; /* Add some spacing around the charts */
+}
+
